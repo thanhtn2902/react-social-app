@@ -1,5 +1,7 @@
 import { View, Text, Button, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { FontAwesome5 } from '@expo/vector-icons';
+
 
 export default function HomeScreen({ navigation }) {
     let DATA = [
@@ -54,6 +56,10 @@ export default function HomeScreen({ navigation }) {
         navigation.navigate('Tweet Screen');
     }
 
+    function randomIntFromInterval(min, max) { // min and max included
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
     const renderItem = ({item}) => (
         <View style={styles.tweetContainer}>
             <TouchableOpacity onPress={() => gotoProfile()}>
@@ -65,7 +71,7 @@ export default function HomeScreen({ navigation }) {
                 />
             </TouchableOpacity>
             <View style={{flex: 1}} >
-                <TouchableOpacity style={styles.tweetFlex} onPress={() => gotoProfile()}>
+                <TouchableOpacity style={styles.flexRow} onPress={() => gotoProfile()}>
                     <Text numberOfLines={1} style={styles.tweetName}>
                         {item.title}
                     </Text>
@@ -84,7 +90,14 @@ export default function HomeScreen({ navigation }) {
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi voluptates ipsa voluptate optio aut architecto blanditiis facilis soluta sit hic?
                     </Text>
                 </TouchableOpacity>
+                <View style={styles.tweetEngagement}>
+                    <TouchableOpacity style={styles.flexRow}>
+                        <FontAwesome5 name="comment-alt" size={22} color="gray" />
+                        <Text style={[styles.textGray, {marginLeft: 5}]}>{randomIntFromInterval(1,1000)}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
+
         </View>
     )
     return (
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
-    tweetFlex: {
+    flexRow: {
         flexDirection: 'row'
     },
     tweetContainer: {
@@ -131,5 +144,13 @@ const styles = StyleSheet.create({
     },
     tweetContent: {
         lineHeight: 20
+    },
+    tweetEngagement: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 12
+    },
+    textGray: {
+        color: 'gray'
     }
 })
