@@ -1,9 +1,11 @@
-import { View, Text, Button, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, FlatList} from 'react-native'
 import React from 'react'
-import { FontAwesome5 } from '@expo/vector-icons';
+import TweetActions from '../components/Home/TweetActions'
+import TweetContent from '../components/Home/TweetContent'
+import TweetInfo from '../components/Home/TweetInfo'
+import TweetImageProfile from '../components/Home/TweetImageProfile'
 
-
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
     let DATA = [
         {
             id: '1',
@@ -46,58 +48,15 @@ export default function HomeScreen({ navigation }) {
             title: 'Title 10'
         }
     ];
-    let randomAvatar = 'https://i.pravatar.cc/300'
-
-    function gotoProfile() {
-        navigation.navigate('Profile Screen');
-    }
-
-    function gotoSingleTweet() {
-        navigation.navigate('Tweet Screen');
-    }
-
-    function randomIntFromInterval(min, max) { // min and max included
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
 
     const renderItem = ({item}) => (
         <View style={styles.tweetContainer}>
-            <TouchableOpacity onPress={() => gotoProfile()}>
-                <Image
-                    style={styles.avatar}
-                    source={{
-                        uri: randomAvatar
-                    }}
-                />
-            </TouchableOpacity>
+            <TweetImageProfile />
             <View style={{flex: 1}} >
-                <TouchableOpacity style={styles.flexRow} onPress={() => gotoProfile()}>
-                    <Text numberOfLines={1} style={styles.tweetName}>
-                        {item.title}
-                    </Text>
-                    <Text numberOfLines={1} style={styles.tweetHandle}>
-                        @nathan99
-                    </Text>
-                    <Text numberOfLines={1} style={styles.tweetHandle}>
-                        &middot;
-                    </Text>
-                    <Text numberOfLines={1} style={styles.tweetHandle}>
-                        9m
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tweetContentContainer} onPress={() => gotoSingleTweet()}>
-                    <Text style={styles.tweetContent}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi voluptates ipsa voluptate optio aut architecto blanditiis facilis soluta sit hic?
-                    </Text>
-                </TouchableOpacity>
-                <View style={styles.tweetEngagement}>
-                    <TouchableOpacity style={styles.flexRow}>
-                        <FontAwesome5 name="comment-alt" size={22} color="gray" />
-                        <Text style={[styles.textGray, {marginLeft: 5}]}>{randomIntFromInterval(1,1000)}</Text>
-                    </TouchableOpacity>
-                </View>
+                <TweetInfo item={item} />
+                <TweetContent />
+                <TweetActions />
             </View>
-
         </View>
     )
     return (
@@ -106,6 +65,9 @@ export default function HomeScreen({ navigation }) {
                 data={DATA}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
+                ItemSeparatorComponent={() => (
+                    <View style={styles.tweetSeparator}></View>
+                )}
             />
         </View>
     )
@@ -116,41 +78,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
-    flexRow: {
-        flexDirection: 'row'
-    },
     tweetContainer: {
         display: 'flex',
         flexDirection: 'row',
         paddingHorizontal: 12,
         paddingVertical: 12
     },
-    avatar: {
-        height: 42,
-        width: 42,
-        marginRight: 8,
-        borderRadius: 21
+    tweetSeparator: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2'
     },
-    tweetName: {
-        fontWeight: 'bold',
-        color: '#222222'
-    },
-    tweetHandle: {
-        marginHorizontal: 8,
-        color: 'gray'
-    },
-    tweetContentContainer: {
-        marginTop: 4,
-    },
-    tweetContent: {
-        lineHeight: 20
-    },
-    tweetEngagement: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 12
-    },
-    textGray: {
-        color: 'gray'
-    }
 })
