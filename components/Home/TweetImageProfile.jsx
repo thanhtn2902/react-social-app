@@ -1,11 +1,11 @@
 import { View, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import React from 'react'
 
-export default function TweetImageProfile({ navigation }) {
+export default function TweetImageProfile(props) {
     const randomAvatar = 'https://i.pravatar.cc/300'
 
     function gotoProfile() {
-        navigation.navigate('Profile Screen');
+        props.navigation.navigate('Profile Screen');
     }
     return (
         <View>

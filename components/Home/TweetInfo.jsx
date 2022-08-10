@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function TweetInfo(props, { navigation }) {
+export default function TweetInfo(props) {
     function gotoProfile() {
-        navigation.navigate('Profile Screen');
+        props.navigation.navigate('Profile Screen');
     }
     return (
         <View>

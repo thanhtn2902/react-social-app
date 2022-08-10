@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function TweetContent({ navigation }) {
+export default function TweetContent(props) {
     function gotoSingleTweet() {
-        navigation.navigate('Tweet Screen');
+        props.navigation.navigate('Tweet Screen');
     }
-
     return (
         <View>
             <TouchableOpacity style={styles.tweetContentContainer} onPress={() => gotoSingleTweet()}>

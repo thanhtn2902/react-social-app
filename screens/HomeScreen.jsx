@@ -1,11 +1,12 @@
-import { View, StyleSheet, FlatList} from 'react-native'
+import { View, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
 import React from 'react'
 import TweetActions from '../components/Home/TweetActions'
 import TweetContent from '../components/Home/TweetContent'
 import TweetInfo from '../components/Home/TweetInfo'
 import TweetImageProfile from '../components/Home/TweetImageProfile'
+import { AntDesign } from '@expo/vector-icons'
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
     let DATA = [
         {
             id: '1',
@@ -49,12 +50,16 @@ export default function HomeScreen() {
         }
     ];
 
+    function gotoNewTweet() {
+        navigation.navigate('New Tweet');
+    }
+
     const renderItem = ({item}) => (
         <View style={styles.tweetContainer}>
-            <TweetImageProfile />
+            <TweetImageProfile navigation={navigation}/>
             <View style={{flex: 1}} >
-                <TweetInfo item={item} />
-                <TweetContent />
+                <TweetInfo item={item} navigation={navigation}/>
+                <TweetContent navigation={navigation}/>
                 <TweetActions />
             </View>
         </View>
@@ -69,6 +74,16 @@ export default function HomeScreen() {
                     <View style={styles.tweetSeparator}></View>
                 )}
             />
+            <TouchableOpacity
+                style={styles.floatingButton}
+                onPress={() => gotoNewTweet()}
+            >
+                <AntDesign
+                    name='plus'
+                    size={26}
+                    color="white"
+                />
+            </TouchableOpacity>
         </View>
     )
 }
@@ -88,4 +103,15 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#f2f2f2'
     },
+    floatingButton: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#1d9bf1',
+        position: 'absolute',
+        bottom: 20,
+        right: 12
+    }
 })
