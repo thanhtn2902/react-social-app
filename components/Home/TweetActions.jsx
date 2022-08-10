@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons'
+import GlobalStyles from '../../assets/style/GlobalStyles'
+
 
 export default function TweetActions() {
     function randomIntFromInterval(min, max) { // min and max included
@@ -12,7 +14,7 @@ export default function TweetActions() {
     }
     return (
         <View style={styles.tweetEngagement}>
-            <TouchableOpacity style={styles.flexRow}>
+            <TouchableOpacity style={GlobalStyles.flexRow}>
                 <EvilIcons
                     name="comment"
                     size={22}
@@ -21,7 +23,7 @@ export default function TweetActions() {
                 />
                 <Text style={styles.textGray}>{randomIntFromInterval(1, 1000)}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.flexRow, styles.ml14]}>
+            <TouchableOpacity style={[GlobalStyles.flexRow, styles.ml14]}>
                 <EvilIcons
                     name="retweet"
                     size={22}
@@ -30,7 +32,7 @@ export default function TweetActions() {
                 />
                 <Text style={styles.textGray}>{randomIntFromInterval(1, 1000)}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.flexRow, styles.ml14]}>
+            <TouchableOpacity style={[GlobalStyles.flexRow, styles.ml14]}>
                 <EvilIcons
                     name="heart"
                     size={22}
@@ -39,7 +41,7 @@ export default function TweetActions() {
                 />
                 <Text style={styles.textGray}>{randomIntFromInterval(1, 1000)}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.flexRow, styles.ml14]}>
+            <TouchableOpacity style={[GlobalStyles.flexRow, styles.ml14]}>
                 <EvilIcons
                     name={shareIcon()}
                     size={22}
@@ -54,9 +56,6 @@ export default function TweetActions() {
 
 
 const styles = StyleSheet.create({
-    flexRow: {
-        flexDirection: 'row'
-    },
     tweetEngagement: {
         flexDirection: 'row',
         alignItems: 'center',
