@@ -33,5 +33,8 @@ export default StyleSheet.create({
     },
     ml16: {
         marginLeft: 16
-    }
+    },
+    textDanger: {
+        color: 'red'
+    },
 });

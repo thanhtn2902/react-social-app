@@ -24,7 +24,7 @@ const HomeStackNavigator = () => {
             }}
         >
             <Stack.Screen
-                name="Home1"
+                name="Tab"
                 component={TabNavigator}
                 options={{
                     headerShown: false

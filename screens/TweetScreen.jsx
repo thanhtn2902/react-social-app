@@ -3,17 +3,21 @@ import React from 'react'
 import { Entypo, EvilIcons } from '@expo/vector-icons'
 import GlobalStyles from '../assets/style/GlobalStyles'
 
-export default function TweetScreen() {
+export default function TweetScreen({ navigation }) {
     function randomIntFromInterval(min, max) { // min and max included
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
     const shareIcon = () => {
         return Platform.OS === 'ios' ? 'share-apple' : 'share-google'
     }
+    function gotoProfile() {
+        navigation.navigate('Profile Screen');
+    }
+
     return (
         <View style={GlobalStyles.container}>
             <View style={styles.profileContainer}>
-                <TouchableOpacity style={GlobalStyles.flexRow}>
+                <TouchableOpacity style={GlobalStyles.flexRow} onPress={() => gotoProfile()}>
                     <Image
                         style={styles.avatar}
                         source={{
