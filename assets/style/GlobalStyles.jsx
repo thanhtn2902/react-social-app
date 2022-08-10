@@ -17,5 +17,21 @@ export default StyleSheet.create({
     },
     boldText: {
         fontWeight: 'bold'
+    },
+    textWhite: {
+        color: 'white'
+    },
+    textGray: {
+        color: 'gray'
+    },
+    sectionContainer: {
+        paddingHorizontal: 10,
+        paddingVertical: 2
+    },
+    ml14: {
+        marginLeft: 14
+    },
+    ml16: {
+        marginLeft: 16
     }
 });

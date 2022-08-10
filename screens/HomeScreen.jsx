@@ -5,7 +5,7 @@ import TweetContent from '../components/Home/TweetContent'
 import TweetInfo from '../components/Home/TweetInfo'
 import TweetImageProfile from '../components/Home/TweetImageProfile'
 import { AntDesign } from '@expo/vector-icons'
-import globalStyles from '../assets/style/GlobalStyles'
+import GlobalStyles from '../assets/style/GlobalStyles'
 
 export default function HomeScreen({navigation}) {
     let DATA = [
@@ -66,13 +66,13 @@ export default function HomeScreen({navigation}) {
         </View>
     )
     return (
-        <View style={globalStyles.container}>
+        <View style={GlobalStyles.container}>
             <FlatList
                 data={DATA}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => (
-                    <View style={globalStyles.tweetSeparator}></View>
+                    <View style={GlobalStyles.tweetSeparator}></View>
                 )}
             />
             <TouchableOpacity
